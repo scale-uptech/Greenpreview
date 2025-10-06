@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GREEN GLEAB — Insights</title>
+    <link rel="canonical" href="https://www.greengleab.co.ke/insights.html">
+    <meta name="description" content="Insights, reports, and analysis on ESG, climate risk, GIS, and World Bank safeguards from Green Gleab.">
+    <meta property="og:title" content="GREEN GLEAB — Insights">
+    <meta property="og:description" content="Insights, reports, and analysis on ESG, climate risk, GIS, and World Bank safeguards from Green Gleab.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0d9488/ffffff?text=Green+Gleab+Insights">
+    <meta property="og:url" content="https://www.greengleab.co.ke/insights.html">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/Uu9eNuHPJvWn_R-n9n-i_g.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* CSS Variables for Theme Management (copied from index.html for visual parity) */
+        :root {
+            /* Brand colors derived from logo */
+            --color-gg-primary: #34d399; /* Primary brand */
+            --color-bg-default: #0f172a; /* Dark Navy */
+            --color-bg-card: #1e293b; /* Slate Dark */
+            --color-text-default: #e5e7eb; /* Light Gray */
+            --color-text-secondary: #9ca3af; /* Gray */
+            --color-input-bg: #1f2937;
+        }
+        
+        .light {
+            /* Light Mode Overrides */
+            --color-gg-primary: #0d9488;
+            --color-gg-secondary: #34d399;
+            --color-bg-default: #f9fafb;
+            --color-bg-card: #ffffff;
+            --color-text-default: #111827;
+            --color-text-secondary: #4b5563;
+            --color-input-bg: #f9fafb;
+        }
+
+        /* Applying Variables with custom classes */
+        .theme-default-bg { background-color: var(--color-bg-default); color: var(--color-text-default); }
+        .theme-card-bg { background-color: var(--color-bg-card); }
+        .theme-text-primary { color: var(--color-gg-primary); }
+        .theme-text-secondary { color: var(--color-text-secondary); }
+        .theme-input-bg { background-color: var(--color-input-bg); border-color: var(--color-text-secondary); }
+
+        /* Alternating Background Gradients for Section Contrast */
+        .theme-gradient-1 { 
+            background: linear-gradient(145deg, var(--color-bg-default) 0%, var(--color-bg-card) 100%);
+            border-bottom: 1px solid var(--color-input-bg);
+        }
+        .theme-gradient-2 { 
+            background: var(--color-bg-card);
+            border-bottom: 1px solid var(--color-input-bg);
+        }
+
+        /* Base Typography Enhancements */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 1.125rem; /* text-lg */
+            line-height: 1.75; /* leading-relaxed */
+            transition: background-color 0.7s ease, color 0.7s ease; /* Dark/Light Toggle Animation */
+        }
+        
+        /* General Layout */
+        .page-section {
+            min-height: calc(100vh - 4rem); 
+            padding-top: 6rem; /* Space for fixed nav */
+            display: block;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Navigation Scrollspy Active & Hover Underline */
+        
+        .nav-link { position: relative; padding: 8px 12px; transition: color 0.3s; }
+        
+        .nav-link::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 0; height: 2px; background-color: var(--color-gg-primary); transition: width 0.3s ease-out, left 0.3s ease-out; }
+        
+        .nav-link:hover::after, .nav-link.active-spy::after { width: 100%; left: 0; }
+        
+        .nav-link.active-spy { color: var(--color-gg-primary) !important; font-weight: 600; }
+        
+
+        /* Hero Video Placeholder Overlay (not used here but keeps parity) */
+        
+        #hero { background-size: cover; background-position: center; position: relative; overflow: hidden; }
+        
+    #hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.75); z-index: 1; }
+
+    #hero > div { position: relative; z-index: 2; }
+
+    /* Map specific height */
+    #contact-map, #projects-map { height: 400px; border-radius: 0.75rem; }
+
+    /* Icon Enhancement (Increased Stroke Weight for Lucide) */
+    [data-lucide] { stroke-width: 2.5; }
+
+    /* Focus Styles */
+    button:focus, a:focus, input:focus, select:focus, textarea:focus { outline: 2px solid var(--color-gg-primary); outline-offset: 2px; border-radius: 4px; }
+
+    .max-w-7xl { max-width: 1400px !important; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gg-primary': 'var(--color-gg-primary)',
+                        'gg-secondary': 'var(--color-gg-secondary)',
+                        'gg-dark': '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased theme-default-bg">
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center shadow-xl" style="background-color: var(--color-bg-default); border-bottom: 1px solid #073532;">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center space-x-3"><img src="assets/GREENLOGO.png" alt="Green Gleab logo" class="w-10 h-10 object-contain" /><a href="homepage.html" class="text-xl font-extrabold" style="color: var(--color-text-default);">GREEN GLEAB</a></div>
+            <div class="flex items-center space-x-6 text-sm">
+                <a href="homepage.html" class="theme-text-secondary hover:theme-text-primary">Home</a>
+                <a href="about.html" class="theme-text-secondary hover:theme-text-primary">About Us</a>
+                <a href="services.html" class="theme-text-secondary hover:theme-text-primary">Services</a>
+                <a href="projects.html" class="theme-text-secondary hover:theme-text-primary">Projects</a>
+                <a href="insights.html" class="theme-text-primary font-semibold">Insights</a>
+                <a href="contact.html" class="bg-gg-primary text-gg-dark px-4 py-2 rounded-full">Contact Us</a>
+                <a href="client-login.html" class="text-white/50 px-4 py-2 rounded-full">Client Login</a>
+                <!-- Theme toggle -->
+                <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gg-primary/20 transition-colors duration-300 theme-text-secondary hover:theme-text-primary focus:outline-none" aria-label="Toggle Light/Dark Theme">
+                    <i id="theme-toggle-icon" data-lucide="sun" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28">
+        <section class="max-w-7xl mx-auto px-4 py-16">
+            <h2 class="text-5xl font-extrabold mb-4 text-center" style="color: var(--color-text-default);">Insights & Knowledge Hub</h2>
+            <p class="text-xl theme-text-secondary text-center mb-12">Thought leadership on ESG, climate risk, and sustainable development.</p>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="md:col-span-2">
+                    <h3 class="text-3xl font-bold mb-6 border-b pb-2" style="color: var(--color-text-default); border-color: var(--color-input-bg);">Latest Articles & Reports</h3>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <button data-tag="all" onclick="filterResources('all', this)" class="resource-tag px-4 py-2 bg-gg-primary text-gg-dark font-medium rounded-full">All Topics</button>
+                        <button data-tag="esg" onclick="filterResources('esg', this)" class="resource-tag px-4 py-2 theme-input-bg theme-text-secondary" style="border: 1px solid var(--color-input-bg);">ESG</button>
+                        <button data-tag="climate" onclick="filterResources('climate', this)" class="resource-tag px-4 py-2 theme-input-bg theme-text-secondary" style="border: 1px solid var(--color-input-bg);">Climate</button>
+                        <button data-tag="gis" onclick="filterResources('gis', this)" class="resource-tag px-4 py-2 theme-input-bg theme-text-secondary" style="border: 1px solid var(--color-input-bg);">GIS & WBESS</button>
+                    </div>
+
+                    <div id="article-list">
+                        <div class="resource-item mb-6 p-5 theme-card-bg rounded-xl" data-tags="gis wbess">
+                            <a href="#" class="text-2xl font-semibold theme-text-primary hover:underline">The Critical Role of WBESS in African Infrastructure</a>
+                            <p class="theme-text-secondary text-base mt-1">Published: Oct 1, 2025 | Category: WBESS, Finance</p>
+                            <p class="mt-2 theme-text-default">An analysis of how meeting international safeguards is non-negotiable for project finance and success on the continent.</p>
+                        </div>
+
+                        <div class="resource-item mb-6 p-5 theme-card-bg rounded-xl" data-tags="climate gis">
+                            <a href="#" class="text-2xl font-semibold theme-text-primary hover:underline">GIS: The Key to Proactive Climate Risk Management</a>
+                            <p class="theme-text-secondary text-base mt-1">Published: Sep 15, 2025 | Category: Technology, Climate Risk</p>
+                            <p class="mt-2 theme-text-default">Exploring how Geographical Information Systems can model vulnerability and enhance project resilience against climatic shocks.</p>
+                        </div>
+
+                        <div class="resource-item mb-6 p-5 theme-card-bg rounded-xl" data-tags="esg">
+                            <a href="#" class="text-2xl font-semibold theme-text-primary hover:underline">Why ESG Reporting is Critical for SME Growth in Kenya</a>
+                            <p class="theme-text-secondary text-base mt-1">Published: Aug 20, 2025 | Category: ESG, Governance</p>
+                            <p class="mt-2 theme-text-default">A look at how transparency unlocks capital for small and medium-sized enterprises.</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="mt-8 text-lg font-semibold theme-text-primary bg-gg-primary/20 hover:bg-gg-primary/30 px-6 py-3 rounded-full inline-flex items-center">View All Reports <i data-lucide="external-link" class="w-5 h-5 ml-2"></i></a>
+                </div>
+
+                <div class="p-8 rounded-xl shadow-2xl border-t-4 border-gg-secondary" style="background-color: var(--color-bg-card);">
+                    <h3 class="text-3xl font-bold text-gg-secondary mb-4 flex items-center"><i data-lucide="briefcase" class="w-7 h-7 mr-2"></i> Join Our Team</h3>
+                    <p class="theme-text-secondary mb-4 text-base">We are always looking for passionate environmental and social experts to join our Nairobi-based team.</p>
+                    <form id="careers-form" onsubmit="event.preventDefault(); showFormMessage('careers-message', 'Thank you for your interest! Your application has been logged.')">
+                        <label for="position" class="block text-base font-medium theme-text-secondary mb-2">Applying for Position</label>
+                        <select id="position" required class="w-full p-3 mb-4 rounded-lg theme-input-bg border" style="color: var(--color-text-default);">
+                            <option value="">Select...</option>
+                            <option value="ESIA_Specialist">ESIA Specialist</option>
+                            <option value="GIS_Analyst">GIS Analyst</option>
+                            <option value="ESG_Consultant">ESG Consultant</option>
+                        </select>
+                        <label for="career-email" class="block text-base font-medium theme-text-secondary mb-2">Email</label>
+                        <input type="email" id="career-email" required class="w-full p-3 mb-4 rounded-lg theme-input-bg border" style="color: var(--color-text-default);">
+                        <label for="cv-upload" class="block text-base font-medium theme-text-secondary mb-2">Upload CV/Resume</label>
+                        <input type="file" id="cv-upload" required class="w-full text-base theme-text-secondary mb-6 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-base file:font-semibold file:bg-gg-primary file:text-gg-dark hover:file:bg-gg-secondary/80">
+                        <button type="submit" class="w-full bg-gg-secondary text-white font-bold py-3 rounded-full shadow-lg">Submit Application</button>
+                        <p id="careers-message" class="text-base text-center theme-text-primary mt-4 hidden" role="status"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared Footer (copied from homepage for consistency) -->
+    <footer id="contact" class="bg-[#04290f] text-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                <!-- Brand -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center">
+                        <img src="assets/GREENLOGO.png" alt="Green Gleab logo" class="w-28 h-28 object-contain" aria-hidden="true" />
+                    </div>
+                    <p class="mt-3 text-sm text-gray-300 max-w-sm">Sustainable future. Infinite growth.</p>
+                </div>
+
+                <!-- Quick links -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-semibold text-white mb-3">Quick links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="homepage.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Home</a></li>
+                        <li><a href="about.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">About</a></li>
+                        <li><a href="services.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Services</a></li>
+                        <li><a href="projects.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-semibold text-white mb-3">Contact</h4>
+                    <div class="text-gray-300 text-sm space-y-2">
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i data-lucide="mail" class="w-5 h-5 text-[color:var(--color-gg-primary)]" aria-hidden="true"></i>
+                            <a href="mailto:info@greengleab.co.ke" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">info@greengleab.co.ke</a>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i data-lucide="phone" class="w-5 h-5 text-[color:var(--color-gg-primary)]" aria-hidden="true"></i>
+                            <a href="tel:+254720872535" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">+254 720 872 535</a>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[color:var(--color-gg-primary)]" aria-hidden="true"></i>
+                            <span>Nairobi, Kenya</span>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-3 mt-3">
+                            <a href="https://www.linkedin.com/company/greengleab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                            <a href="https://www.facebook.com/greengleab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t border-black/30 pt-4 text-center text-sm text-gray-400">
+                © 2025 Green Gleab. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons({ 'stroke-width': 2.5 }); document.getElementById('year4').textContent = new Date().getFullYear();</script>
+    <script>
+        function filterResources(tag, clickedElement){
+            const items=document.querySelectorAll('.resource-item'); const tags=document.querySelectorAll('.resource-tag');
+            tags.forEach(t=>{ t.classList.remove('bg-gg-primary','text-gg-dark'); t.classList.add('theme-input-bg','theme-text-secondary'); });
+            if(clickedElement){ clickedElement.classList.remove('theme-input-bg','theme-text-secondary'); clickedElement.classList.add('bg-gg-primary','text-gg-dark'); }
+            items.forEach(item=>{ const itemTags=item.getAttribute('data-tags'); if(tag==='all' || itemTags.includes(tag)) item.style.display='block'; else item.style.display='none'; });
+        }
+        function showFormMessage(id,msg){ const el=document.getElementById(id); if(el){ el.textContent=msg; el.classList.remove('hidden'); setTimeout(()=>el.classList.add('hidden'),5000);} }
+    </script>
+    <script>
+        // Theme toggle helper (same behavior as index.html)
+        function applyTheme(theme){
+            document.body.classList.remove('light','dark');
+            document.body.classList.add(theme);
+            const isDark = theme === 'dark';
+            const toggleIcon = document.getElementById('theme-toggle-icon');
+            if(toggleIcon){ toggleIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon'); lucide.createIcons({ 'stroke-width': 2.5 }); }
+            localStorage.setItem('theme', theme);
+        }
+        function toggleTheme(){ const current = localStorage.getItem('theme') || 'dark'; const next = current === 'dark' ? 'light' : 'dark'; applyTheme(next); }
+        // Initialize theme on load
+        window.addEventListener('load', ()=>{ const saved = localStorage.getItem('theme') || 'dark'; applyTheme(saved); });
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Green Gleab Company Limited","url":"https://www.greengleab.co.ke","logo":"https://placehold.co/60x60/34d399/0f172a?text=GG","contactPoint":{"@type":"ContactPoint","telephone":"+254-720-872-535","contactType":"Sales and Support"},"sameAs":["https://www.linkedin.com/company/greengleab","https://twitter.com/greengleab"]}
+    </script>
+</body>
+</html>

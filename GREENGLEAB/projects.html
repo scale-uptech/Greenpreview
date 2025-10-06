@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GREEN GLEAB — Projects</title>
+    <link rel="canonical" href="https://www.greengleab.co.ke/projects.html">
+    <meta name="description" content="Selected projects and impact from Green Gleab: ESIA, GIS, and WBESS compliance across the region.">
+    <meta property="og:title" content="GREEN GLEAB — Projects">
+    <meta property="og:description" content="Selected projects and impact from Green Gleab: ESIA, GIS, and WBESS compliance across the region.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0d9488/ffffff?text=Green+Gleab+Projects">
+    <meta property="og:url" content="https://www.greengleab.co.ke/projects.html">
+
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/Uu9eNuHPJvWn_R-n9n-i_g.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <style>
+    :root { --color-gg-primary:#34d399; --color-bg-default:#052f2b; --color-bg-card:#0b3b37; --color-text-default:#e6f6f0; --color-text-secondary:#9cc3b8; }
+        .light { --color-gg-primary: #0d9488; --color-gg-secondary: #34d399; --color-bg-default: #f9fafb; --color-bg-card: #ffffff; --color-text-default: #111827; --color-text-secondary: #4b5563; --color-input-bg: #f9fafb; }
+        .theme-default-bg { background-color: var(--color-bg-default); color: var(--color-text-default); }
+        .theme-card-bg { background-color: var(--color-bg-card); }
+        .theme-text-primary { color: var(--color-gg-primary); }
+        .max-w-7xl { max-width: 1400px !important; }
+        body { font-family: 'Inter', sans-serif; font-size: 1.0625rem; }
+        #projects-map { height: 400px; border-radius: 12px; }
+    </style>
+</head>
+<body class="antialiased theme-default-bg">
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 flex items-center shadow-xl" style="background-color: var(--color-bg-default); border-bottom: 1px solid #073532;">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <div class="flex items-center space-x-3"><img src="assets/GREENLOGO.png" alt="Green Gleab logo" class="w-10 h-10 object-contain" /><a href="homepage.html" class="text-xl font-extrabold" style="color: var(--color-text-default);">GREEN GLEAB</a></div>
+            <div class="flex items-center space-x-6 text-sm">
+                <a href="homepage.html" class="theme-text-secondary hover:theme-text-primary">Home</a>
+                <a href="about.html" class="theme-text-secondary hover:theme-text-primary">About Us</a>
+                <a href="services.html" class="theme-text-secondary hover:theme-text-primary">Services</a>
+                <a href="projects.html" class="theme-text-primary font-semibold">Projects</a>
+                <a href="insights.html" class="theme-text-secondary hover:theme-text-primary">Insights</a>
+                <a href="contact.html" class="bg-gg-primary text-gg-dark px-4 py-2 rounded-full">Contact Us</a>
+                <a href="client-login.html" class="text-white/50 px-4 py-2 rounded-full">Client Login</a>
+                <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gg-primary/20 transition-colors duration-300 theme-text-secondary hover:theme-text-primary focus:outline-none" aria-label="Toggle Light/Dark Theme">
+                    <i id="theme-toggle-icon" data-lucide="sun" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28">
+        <section class="max-w-7xl mx-auto px-4 py-16">
+            <h2 class="text-5xl font-extrabold mb-4 text-center" style="color: var(--color-text-default);">Our Impact & Projects</h2>
+            <p class="text-xl theme-text-secondary text-center mb-12">Evidence-based results across the region, minimizing risk and maximizing social return.</p>
+
+            <div class="grid md:grid-cols-3 gap-8 text-center mb-16">
+                <div class="p-6 theme-card-bg rounded-xl shadow-xl border-t-4 theme-text-primary border-gg-primary">
+                    <p id="count-countries" data-target="12" class="text-6xl font-extrabold theme-text-primary">0</p>
+                    <p class="mt-2 text-xl font-semibold" style="color: var(--color-text-default);">Countries Served</p>
+                </div>
+                <div class="p-6 theme-card-bg rounded-xl shadow-xl border-t-4 theme-text-primary border-gg-primary">
+                    <p id="count-projects" data-target="175" class="text-6xl font-extrabold theme-text-primary">0</p>
+                    <p class="mt-2 text-xl font-semibold" style="color: var(--color-text-default);">Projects Delivered</p>
+                </div>
+                <div class="p-6 theme-card-bg rounded-xl shadow-xl border-t-4 theme-text-primary border-gg-primary">
+                    <p id="count-success" data-target="98" class="text-6xl font-extrabold theme-text-primary">0%</p>
+                    <p class="mt-2 text-xl font-semibold" style="color: var(--color-text-default);">Regulatory Success Rate</p>
+                </div>
+            </div>
+
+            <h3 class="text-4xl font-bold mt-12 mb-8" style="color: var(--color-text-default);">Featured Case Studies</h3>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="p-6 theme-card-bg rounded-xl shadow-lg border transition duration-300 hover:scale-[1.02] hover:shadow-gg-secondary/50" style="border-color: var(--color-input-bg);">
+                    <i data-lucide="building-2" class="w-10 h-10 theme-text-primary mb-3"></i>
+                    <h4 class="text-2xl font-bold mb-2" style="color: var(--color-text-default);">Infrastructure ESG Due Diligence</h4>
+                    <p class="theme-text-secondary text-base">Comprehensive due diligence for a major regional infrastructure fund, focusing on WBESS and complex Resettlement Action Planning (RAP).</p>
+                    <button onclick="openModal('case-study-1')" class="mt-4 text-base font-semibold theme-text-primary hover:text-gg-secondary flex items-center">View Details <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i></button>
+                </div>
+                <div class="p-6 theme-card-bg rounded-xl shadow-lg border transition duration-300 hover:scale-[1.02] hover:shadow-gg-secondary/50" style="border-color: var(--color-input-bg);">
+                    <i data-lucide="wind" class="w-10 h-10 theme-text-primary mb-3"></i>
+                    <h4 class="text-2xl font-bold mb-2" style="color: var(--color-text-default);">Renewable Energy Site Selection</h4>
+                    <p class="theme-text-secondary text-base">Using advanced GIS and climate risk screening to optimize the location of a large-scale solar farm in a sensitive ecosystem.</p>
+                    <button onclick="openModal('case-study-2')" class="mt-4 text-base font-semibold theme-text-primary hover:text-gg-secondary flex items-center">View Details <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i></button>
+                </div>
+                <div class="p-6 theme-card-bg rounded-xl shadow-lg border transition duration-300 hover:scale-[1.02] hover:shadow-gg-secondary/50" style="border-color: var(--color-input-bg);">
+                    <i data-lucide="file-text" class="w-10 h-10 theme-text-primary mb-3"></i>
+                    <h4 class="text-2xl font-bold mb-2" style="color: var(--color-text-default);">Corporate Sustainability Reporting</h4>
+                    <p class="theme-text-secondary text-base">Developing a full GRI-compliant report for a major African corporate, enhancing transparency and investor confidence.</p>
+                    <button onclick="openModal('case-study-3')" class="mt-4 text-base font-semibold theme-text-primary hover:text-gg-secondary flex items-center">View Details <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i></button>
+                </div>
+            </div>
+
+            <h3 class="text-4xl font-bold mt-16 mb-8" style="color: var(--color-text-default);">Interactive GIS Project Viewer</h3>
+            <div id="projects-map" class="w-full shadow-2xl border-4 border-gg-primary/50"></div>
+        </section>
+    </main>
+
+    <!-- Shared Footer (copied from homepage for consistency) -->
+    <footer id="contact" class="bg-[#04290f] text-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                <!-- Brand -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center">
+                        <img src="assets/GREENLOGO.png" alt="Green Gleab logo" class="w-28 h-28 object-contain" aria-hidden="true" />
+                    </div>
+                    <p class="mt-3 text-sm text-gray-300 max-w-sm">Sustainable future. Infinite growth.</p>
+                </div>
+
+                <!-- Quick links -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-semibold text-white mb-3">Quick links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="homepage.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Home</a></li>
+                        <li><a href="about.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">About</a></li>
+                        <li><a href="services.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Services</a></li>
+                        <li><a href="projects.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="flex flex-col items-center md:items-start text-center md:text-left">
+                    <h4 class="font-semibold text-white mb-3">Contact</h4>
+                    <div class="text-gray-300 text-sm space-y-2">
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i data-lucide="mail" class="w-5 h-5 text-[color:var(--color-gg-primary)]" aria-hidden="true"></i>
+                            <a href="mailto:info@greengleab.co.ke" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">info@greengleab.co.ke</a>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i data-lucide="phone" class="w-5 h-5 text-[color:var(--color-gg-primary)]" aria-hidden="true"></i>
+                            <a href="tel:+254720872535" class="hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200">+254 720 872 535</a>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[color:var(--color-gg-primary)]" aria-hidden="true"></i>
+                            <span>Nairobi, Kenya</span>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start space-x-3 mt-3">
+                            <a href="https://www.linkedin.com/company/greengleab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200" aria-label="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                            <a href="https://www.facebook.com/greengleab" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[color:var(--color-gg-secondary)] transition-colors duration-200" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 border-t border-black/30 pt-4 text-center text-sm text-gray-400">
+                © 2025 Green Gleab. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div id="case-study-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300" onclick="closeModal()">
+        <div class="p-8 rounded-xl max-w-3xl w-full mx-4 shadow-2xl border transition-colors duration-700" style="border-color: var(--color-input-bg); background-color: var(--color-bg-card);" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4 border-b pb-3" style="border-color: var(--color-input-bg);">
+                <h3 id="modal-title" class="text-3xl font-bold theme-text-primary">Case Study Title</h3>
+                <button onclick="closeModal()" class="theme-text-secondary hover:text-gg-primary transition focus:outline-none focus:ring-2 focus:ring-gg-primary p-2 rounded-full"><i data-lucide="x" class="w-7 h-7"></i></button>
+            </div>
+            <div id="modal-content" class="space-y-6 max-h-[70vh] overflow-y-auto pr-3 text-base" style="color: var(--color-text-default);"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>lucide.createIcons({ 'stroke-width': 2.5 }); document.getElementById('year3').textContent = new Date().getFullYear();</script>
+    <script>
+        // counters
+        function easeOutExpo(t){return t===1?1:1-Math.pow(2,-10*t);} 
+        function animateValue(id,start,end,duration,suffix=''){let startTime=null; const obj=document.getElementById(id); const step=(timestamp)=>{ if(!startTime) startTime=timestamp; const progress=timestamp-startTime; const easedProgress=easeOutExpo(Math.min(1,progress/duration)); let currentValue; if(suffix==='%' ) currentValue=Math.round(start+(end-start)*easedProgress); else currentValue=Math.floor(start+(end-start)*easedProgress); obj.textContent=currentValue+suffix; if(progress<duration) window.requestAnimationFrame(step); else obj.textContent=end+(suffix==='+'?suffix:(suffix==='%'?'%':'')); }; window.requestAnimationFrame(step);} 
+        animateValue('count-countries',0,12,1800,'+'); animateValue('count-projects',0,175,1800,'+'); animateValue('count-success',0,98,1800,'%');
+
+        // map
+        const map = L.map('projects-map').setView([-1.286389,36.817222],6);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+        L.marker([-0.1022,34.7679]).addTo(map).bindPopup('Kisumu - Energy Project ESIA');
+        L.marker([0.5167,35.2667]).addTo(map).bindPopup('Eldoret - Agriculture ESG Audit');
+        L.marker([-4.0437,39.6682]).addTo(map).bindPopup('Mombasa - Infrastructure WBESS');
+
+        // modal
+        const modal=document.getElementById('case-study-modal'); const modalTitle=document.getElementById('modal-title'); const modalContent=document.getElementById('modal-content');
+        const caseStudies={
+            'case-study-1':{title:'Infrastructure ESG Due Diligence',content:`<p class="font-bold text-lg theme-text-primary">Challenge: Complex Land Acquisition & Finance Risk</p><p>A regional fund required rapid, in-depth ESG due diligence for a major public-private partnership (PPP). The project involved significant land acquisition in a densely populated area, posing high social risk and strict compliance deadlines for World Bank financing (WBESS).</p><h4 class="font-bold theme-text-primary mt-4">Metrics & Outcomes:</h4><ul class="list-disc list-inside theme-text-default ml-4 space-y-2"><li><strong>Risk Reduction:</strong> Reduced social risk score from High to Medium-Low within 6 months.</li><li><strong>Compliance:</strong> Achieved full adherence to WBESS ESF 5 (Land Acquisition) and ESF 7 (Indigenous Peoples).</li><li><strong>Key Deliverable:</strong> Developed a successful <strong>Resettlement Action Plan (RAP)</strong> for 400+ households.</li></ul><p class="font-bold text-lg theme-text-primary mt-6">Solution:</p><p>We conducted a full WBESS gap analysis, led iterative stakeholder engagement, and developed a compliant RAP using high-resolution GIS mapping to clearly define the Area of Influence (AoI) and track compensation disbursements.</p>`},
+            'case-study-2':{title:'Renewable Energy Site Selection',content:`<p class="font-bold text-lg theme-text-primary">Challenge: Environmental & Climate Vulnerability</p><p>A developer needed to identify the optimal site for a 50MW solar farm, balancing high energy output potential with strict environmental conservation requirements, biodiversity constraints, and long-term climate risk (future drought/flood exposure).</p><h4 class="font-bold theme-text-primary mt-4">Metrics & Outcomes:</h4><ul class="list-disc list-inside theme-text-default ml-4 space-y-2"><li><strong>Optimization:</strong> Identified a site saving 15% on mitigation costs compared to the original location.</li><li><strong>Risk Avoidance:</strong> Modeled and mitigated exposure to 50-year flood lines and identified migratory bird corridors.</li><li><strong>Key Deliverable:</strong> A robust <strong>GIS Multi-Criteria Analysis (MCA)</strong> report used for final investment decision.</li></ul><p class="font-bold text-lg theme-text-primary mt-6">Solution:</p><p>Our team used advanced GIS modeling, integrating satellite imagery, climate change projections (IPCC data), and local biodiversity layers. We performed a spatial analysis to rank sites based on financial viability and environmental risk scores.</p>`},
+            'case-study-3':{title:'Corporate Sustainability Reporting',content:`<p class="font-bold text-lg theme-text-primary">Challenge: Attracting Impact Investment</p><p>A large African corporate operating across three countries needed to produce its first comprehensive, externally-verified sustainability report to attract impact investors and meet rigorous market demands for ESG transparency.</p><h4 class="font-bold theme-text-primary mt-4">Metrics & Outcomes:</h4><ul class="list-disc list-inside theme-text-default ml-4 space-y-2"><li><strong>Investor Confidence:</strong> Report publication led to a <strong>$15M increase in accessible impact capital</strong>.</li><li><strong>Reporting Standard:</strong> Achieved compliance with Global Reporting Initiative (GRI) standards.</li><li><strong>Key Deliverable:</strong> Established an internal <strong>ESG data governance framework</strong> for recurring reporting.</li></ul><p class="font-bold text-lg theme-text-primary mt-6">Solution:</p><p>We established an internal ESG baseline, conducted a materiality assessment to identify key topics (e.g., water use, social equality), and collected and verified data against GRI standards, setting up protocols for future reporting cycles.</p>`}
+        };
+        function openModal(id){const data=caseStudies[id]; if(data){modalTitle.textContent=data.title; modalContent.innerHTML=data.content; modal.classList.remove('hidden'); setTimeout(()=>modal.classList.add('opacity-100'),10); document.body.style.overflow='hidden';}}
+        function closeModal(){modal.classList.remove('opacity-100'); setTimeout(()=>{modal.classList.add('hidden'); document.body.style.overflow='';},300);} 
+    </script>
+    <script>
+        // Theme toggle (persisted)
+        function applyTheme(theme){ document.body.classList.remove('light','dark'); document.body.classList.add(theme); const isDark = theme === 'dark'; const toggleIcon = document.getElementById('theme-toggle-icon'); if(toggleIcon){ toggleIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon'); lucide.createIcons({ 'stroke-width': 2.5 }); } localStorage.setItem('theme', theme); }
+        function toggleTheme(){ const current = localStorage.getItem('theme') || 'dark'; applyTheme(current === 'dark' ? 'light' : 'dark'); }
+        window.addEventListener('load', ()=>{ const saved = localStorage.getItem('theme') || 'dark'; applyTheme(saved); });
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Green Gleab Company Limited","url":"https://www.greengleab.co.ke","logo":"https://placehold.co/60x60/34d399/0f172a?text=GG","contactPoint":{"@type":"ContactPoint","telephone":"+254-720-872-535","contactType":"Sales and Support"},"sameAs":["https://www.linkedin.com/company/greengleab","https://twitter.com/greengleab"]}
+    </script>
+</body>
+</html>
